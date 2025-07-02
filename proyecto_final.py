@@ -154,7 +154,7 @@ class Ambiente:
     def graficar_grilla(self):
         # Guarda foto de la grilla actual como imagen PNG y con nombre del paso
         self.contador_pasos += 1
-        nombre_archivo = f"grilla_colonia_paso_{self.contador_pasos}.png" # despues usamos plt.savefig
+        nombre_archivo = f"grilla_colonia_paso_{self.contador_pasos}.png" # despues usamos plt.savefig  commit 17
 
         cmap = plt.cm.get_cmap('Set1', 4)  # Mapa de colores con 4 clases
         fig, ax = plt.subplots(figsize=(5,5))
