@@ -1,3 +1,4 @@
+#commit 1
 import gi
 import random
 import pandas as pd
@@ -9,6 +10,8 @@ from matplotlib.patches import Patch  # Para crear leyendas
 
 gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, Gio, GObject
+
+#commit 2
 
 # CLASE Bacteria
 class Bacteria:
@@ -69,6 +72,8 @@ class Bacteria:
 
 
 # CLASE Ambiente
+
+# commit 5
 class Ambiente:
     def __init__(self):
         self.razas_disponibles = ["cocos", "bacilos", "espirilos"]
@@ -330,6 +335,7 @@ class Simulacion:
 
 
 # INTERFAZ GTK
+
 class MiAplicacion(Gtk.Application):
     def __init__(self):
         super().__init__(application_id="org.ejemplo.SimuladorColonia")
@@ -346,12 +352,14 @@ class MiAplicacion(Gtk.Application):
         self.add_action(Gio.SimpleAction.new("graficar_evolucion", None))
         self.lookup_action("graficar_evolucion").connect("activate", self.on_graficar_evolucion)
 
+# commit 3
     def do_activate(self):
         # Ventana principal
         self.ventana = Gtk.ApplicationWindow(application=self)
         self.ventana.set_title("Simulador de Colonia Bacteriana")
         self.ventana.set_default_size(800, 600)
 
+# commit 4
         # HeaderBar con menú (el borde superior con un boton menú)
         header = Gtk.HeaderBar()
         header.set_title_widget(Gtk.Label(label="Simulador de Colonia Bacteriana"))
