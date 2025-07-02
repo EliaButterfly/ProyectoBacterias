@@ -21,6 +21,7 @@ class Bacteria:
         self.__resistente = resistente
         self.__estado = estado  # "activa" o "inactiva"
         self.__id = id_bacteria
+        # commit 14
 
     def get_energia(self):
         return self.__energia
