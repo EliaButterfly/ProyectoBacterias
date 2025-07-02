@@ -131,6 +131,8 @@ class Ambiente:
     def sincronizar_visual(self):
         # Crea una grilla visual numérica con valores representativos:
         # 0 = vacío, 1 = activa no resistente, 2 = inactiva, 3 = activa resistente
+
+    # commit 7
         self.grilla_visual = np.zeros((5, 5))  # Grilla numérica para visualización
         for i in range(5):
             for j in range(5):
