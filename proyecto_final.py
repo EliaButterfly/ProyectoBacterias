@@ -52,6 +52,8 @@ class Bacteria:
         self.__energia += consumido
         return consumido
 
+ # commit 11
+
     def dividirse(self):
         # Si tiene suficiente energía, se divide (mitosis)
         if self.__energia >= 50 and self.__estado == "activa":
