@@ -150,7 +150,7 @@ class Ambiente:
                 elif bacteria.get_estado() == "activa" and not bacteria.get_resistente():
                     self.grilla_visual[i, j] = 1
 
-    # commit 8
+    # commit 8 - commit 15
     def graficar_grilla(self):
         # Guarda foto de la grilla actual como imagen PNG y con nombre del paso
         self.contador_pasos += 1
