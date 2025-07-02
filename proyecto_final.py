@@ -96,6 +96,7 @@ class Ambiente:
         id_bacteria = f"{raza}_{i}_{j}"
         self.grilla[i, j] = Bacteria(id_bacteria, raza, energia, resistente, estado)
 
+# commit 18
     def actualizar_nutrientes(self):
         # Regenera entre 0 y 2 nutrientes por celda (np.random.randint lo hace para cada celda)
         self.nutrientes += np.random.randint(0, 3, size=(5, 5))
