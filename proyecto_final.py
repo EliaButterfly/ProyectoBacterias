@@ -138,39 +138,6 @@ class Ambiente:
                 elif bacteria.get_estado() == "activa" and not bacteria.get_resistente():
                     self.grilla_visual[i, j] = 1
 
-    def registrar_estadisticas(self):
-            activas = sum(1 for i in range(5) for j in range(5)
-                        if self.grilla[i, j] and self.grilla[i, j].get_estado() == "activa")
-            resistentes = sum(1 for i in range(5) for j in range(5)
-                            if self.grilla[i, j] and self.grilla[i, j].get_resistente())
-            self.historia.append((self.contador_pasos, activas, resistentes))
-
-    def graficar_estadisticas(self):
-        pasos = [h[0] for h in self.historia]
-        activas = [h[1] for h in self.historia]
-        resistentes = [h[2] for h in self.historia]
-        plt.plot(pasos, activas, label="Bacterias activas")
-        plt.plot(pasos, resistentes, label="Bacterias resistentes")
-        plt.xlabel("Paso de simulación")
-        plt.ylabel("Cantidad")
-        plt.title("Evolución de la colonia bacteriana")
-        plt.legend()
-        plt.savefig("evolucion_colonia.png")
-        plt.close()
-
-    def graficar_distribucion_actual(self):
-        tipos = ["Vacío", "Activa no resistente", "Inactiva", "Activa resistente"]
-        cuenta = [0, 0, 0, 0]
-        for i in range(5):
-            for j in range(5):
-                val = int(self.grilla_visual[i, j])
-                cuenta[val] += 1
-        plt.bar(tipos, cuenta, color=["white", "red", "blue", "green"])
-        plt.ylabel("Cantidad")
-        plt.title("Distribución actual de la colonia")
-        plt.savefig("distribucion_colonia.png")
-        plt.close()
-
 
     def graficar_grilla(self):
         # Guarda foto de la grilla actual como imagen PNG y con nombre del paso
@@ -288,58 +255,6 @@ class Colonia:
         self.ambiente.sincronizar_visual()  # Actualiza la grilla visual
         print("\n[VISUALIZACIÓN ACTUALIZADA]")
 
-    def graficar_evolucion(self):
-        if not self.historial:
-            print("No hay datos para graficar.")
-            return
-
-        pasos = [d["paso"] for d in self.historial]
-        activas = [d["activas"] for d in self.historial]
-        inactivas = [d["inactivas"] for d in self.historial]
-        resistentes = [d["resistentes"] for d in self.historial]
-
-        plt.figure(figsize=(8,5))
-        plt.plot(pasos, activas, label="Activas", color="green", marker="o")
-        plt.plot(pasos, inactivas, label="Inactivas", color="red", marker="x")
-        plt.plot(pasos, resistentes, label="Resistentes", color="blue", linestyle="--")
-        plt.xlabel("Paso de simulación")
-        plt.ylabel("Cantidad de bacterias")
-        plt.title("Evolución de la colonia bacteriana")
-        plt.legend()
-        plt.grid(True)
-        plt.tight_layout()
-        plt.savefig("evolucion_colonia.png")
-        plt.close()
-        print("Gráfico de evolución guardado como 'evolucion_colonia.png'")
-
-    def graficar_resistencias(self):
-        # Cuenta bacterias por tipo
-        activas = inactivas = resistentes = 0
-        for i in range(5):
-            for j in range(5):
-                b = self.ambiente.grilla[i, j]
-                if b:
-                    if b.get_estado() == "activa":
-                        activas += 1
-                        if b.get_resistente():
-                            resistentes += 1
-                    else:
-                        inactivas += 1
-
-        # Datos para el gráfico de torta
-        labels = ["Activas", "Inactivas", "Resistentes"]
-        valores = [activas, inactivas, resistentes]
-        colores = ["green", "red", "blue"]
-
-        plt.figure(figsize=(6,6))
-        plt.pie(valores, labels=labels, colors=colores, autopct="%1.1f%%")
-        plt.title("Distribución actual de bacterias")
-        plt.tight_layout()
-        plt.savefig("distribucion_colonia.png")
-        plt.close()
-        print("Gráfico de torta guardado como 'distribucion_colonia.png'")
-
-
     def reporte_estado(self):
         # Muestra la grilla textual: primeras letras de los estados y 'R' si es resistente
         print("\n=== Grilla de Estados de Bacterias (Texto) ===")
@@ -354,6 +269,65 @@ class Colonia:
         print("\n=== Grilla Visual (Números) ===")
         print(self.ambiente.grilla_visual.astype(int))  # Imprime los valores numéricos de la grilla visual
 
+# CLASE Simulacion
+class Simulacion:
+    def __init__(self, colonia):
+        self.colonia = colonia
+
+# Grafica lineal
+    def graficar_evolucion(self):
+        historial = self.colonia.historial
+        if not historial:
+            print("No hay datos para graficar.")
+            return
+
+        pasos = [d["paso"] for d in historial]
+        activas = [d["activas"] for d in historial]
+        inactivas = [d["inactivas"] for d in historial]
+        resistentes = [d["resistentes"] for d in historial]
+
+        plt.figure(figsize=(8, 5))
+        plt.plot(pasos, activas, label="Activas", color="green", marker="o")
+        plt.plot(pasos, inactivas, label="Inactivas", color="red", marker="x")
+        plt.plot(pasos, resistentes, label="Resistentes", color="blue", linestyle="--")
+        plt.xlabel("Paso de simulación")
+        plt.ylabel("Cantidad de bacterias")
+        plt.title("Evolución de la colonia bacteriana")
+        plt.legend()
+        plt.grid(True)
+        plt.tight_layout()
+        plt.savefig("evolucion_colonia.png")
+        plt.close()
+        print("Gráfico de evolución guardado como 'evolucion_colonia.png'")
+
+# Grafica circular (activas,inactivas,resistentes)
+    def graficar_resistencias(self):
+        ambiente = self.colonia.ambiente
+        activas = inactivas = resistentes = 0
+        for i in range(5):
+            for j in range(5):
+                b = ambiente.grilla[i, j]
+                if b:
+                    if b.get_estado() == "activa":
+                        activas += 1
+                        if b.get_resistente():
+                            resistentes += 1
+                    else:
+                        inactivas += 1
+
+        labels = ["Activas", "Inactivas", "Resistentes"]
+        valores = [activas, inactivas, resistentes]
+        colores = ["green", "red", "blue"]
+
+        plt.figure(figsize=(6, 6))
+        plt.pie(valores, labels=labels, colors=colores, autopct="%1.1f%%")
+        plt.title("Distribución actual de bacterias")
+        plt.tight_layout()
+        plt.savefig("distribucion_colonia.png")
+        plt.close()
+        print("Gráfico de torta guardado como 'distribucion_colonia.png'")
+
+
 
 # INTERFAZ GTK
 class MiAplicacion(Gtk.Application):
@@ -365,6 +339,7 @@ class MiAplicacion(Gtk.Application):
         self.ambiente.sincronizar_visual()
 
         self.colonia = Colonia(self.ambiente)  # instancia a Colonia
+        self.simulacion = Simulacion(self.colonia)  # instancia a Simulacion
 
         self.add_action(Gio.SimpleAction.new("exportar_csv", None))
         self.lookup_action("exportar_csv").connect("activate", self.on_exportar_csv)
@@ -503,8 +478,8 @@ class MiAplicacion(Gtk.Application):
 
     # Graficar Evolución
     def on_graficar_evolucion(self, action, param):
-        self.colonia.graficar_evolucion()
-        self.colonia.graficar_resistencias()
+        self.simulacion.graficar_evolucion()
+        self.simulacion.graficar_resistencias()
 
         # Crea imágenes Gtk a partir de los archivos generados
         imagen_crecimiento = Gtk.Image.new_from_file("evolucion_colonia.png")
