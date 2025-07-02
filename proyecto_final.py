@@ -202,6 +202,7 @@ class Colonia:
             if self.ambiente.grilla[i, j] is not None
         ]
 
+# commit 10
     def paso(self):
         self.ambiente.aplicar_ambiente()  # Actualiza y difunde nutrientes
         print("\n>>> Ejecutando paso de simulación")
