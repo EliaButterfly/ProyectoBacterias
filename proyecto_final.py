@@ -114,6 +114,7 @@ class Ambiente:
                 nueva[i, j] = (self.nutrientes[i, j] + promedio) // 2  # Valor medio entre celda actual y vecinos
         self.nutrientes = nueva
 
+# commit 19
     def aplicar_antibiotico(self):
         eliminadas = 0
         for i in range(5):
