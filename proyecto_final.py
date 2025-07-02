@@ -288,6 +288,8 @@ class Colonia:
         print("\n=== Grilla Visual (Números) ===")
         print(self.ambiente.grilla_visual.astype(int))  # Imprime los valores numéricos de la grilla visual
 
+    # commi 22
+
 # CLASE Simulacion
 class Simulacion:
     def __init__(self, colonia):
