@@ -63,6 +63,7 @@ class Bacteria:
             return Bacteria(nueva_id, self.__raza, self.__energia, self.__resistente, "activa")
         return None
 
+# commit 20
     def mutar(self):
         # 25% de probabilidad de mutar y volverse resistente
         # random.random() devuelve float en [0.0, 1.0)
