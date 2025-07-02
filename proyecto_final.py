@@ -84,7 +84,7 @@ class Ambiente:
         self.contador_pasos = 0
         self.factor_ambiental = 0.2  # antibióticos 
 
-# commit 6
+# commit 6 - commit 13
     def grilla_objetos(self):
         # Agrega una bacteria en una posición aleatoria libre
         i, j = random.randint(0, 4), random.randint(0, 4)
