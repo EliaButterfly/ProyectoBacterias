@@ -75,7 +75,7 @@ class Bacteria:
 
 # CLASE Ambiente
 
-# commit 5
+# commit 5 - commit 12
 class Ambiente:
     def __init__(self):
         self.razas_disponibles = ["cocos", "bacilos", "espirilos"]
