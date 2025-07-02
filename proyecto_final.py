@@ -522,6 +522,7 @@ class MiAplicacion(Gtk.Application):
         box_imagenes.append(Gtk.Label(label="Gráfico: Distribución actual de la colonia"))
         box_imagenes.append(imagen_resistencia)
 
+# commit 24
         # Scroll único para ambas imágenes
         scroll = Gtk.ScrolledWindow()
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
