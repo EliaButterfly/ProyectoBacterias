@@ -472,6 +472,7 @@ class MiAplicacion(Gtk.Application):
         self.ambiente.sincronizar_visual()
         self.label_estado.set_text("Antibiótico aplicado a la colonia.")
 
+# commit 21
     # Exportar csv
     def exportar_csv(self):
         datos = []
