@@ -270,6 +270,7 @@ class Colonia:
         self.ambiente.sincronizar_visual()  # Actualiza la grilla visual
         print("\n[VISUALIZACIÓN ACTUALIZADA]")
 
+    # commit 16
     def reporte_estado(self):
         # Muestra la grilla textual: primeras letras de los estados y 'R' si es resistente
         print("\n=== Grilla de Estados de Bacterias (Texto) ===")
