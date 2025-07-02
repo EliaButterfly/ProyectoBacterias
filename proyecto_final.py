@@ -128,6 +128,7 @@ class Ambiente:
         self.difundir_nutrientes()
 
 # Pasar de objetos a numeros para graficar
+
     def sincronizar_visual(self):
         # Crea una grilla visual numérica con valores representativos:
         # 0 = vacío, 1 = activa no resistente, 2 = inactiva, 3 = activa resistente
@@ -146,7 +147,7 @@ class Ambiente:
                 elif bacteria.get_estado() == "activa" and not bacteria.get_resistente():
                     self.grilla_visual[i, j] = 1
 
-
+    # commit 8
     def graficar_grilla(self):
         # Guarda foto de la grilla actual como imagen PNG y con nombre del paso
         self.contador_pasos += 1
