@@ -188,6 +188,8 @@ class Ambiente:
         self.nombre_ultima_imagen = nombre_archivo # así las imágenes se llaman paso1 paso2 etc
 
 # CLASE Colonia
+
+ # commit 9
 class Colonia:
     def __init__(self, ambiente):
         self.ambiente = ambiente
