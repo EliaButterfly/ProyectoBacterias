@@ -501,6 +501,7 @@ class MiAplicacion(Gtk.Application):
     def on_exportar_csv(self, action, param):  # para conectar con menú (porque el boton está en el menú)
         self.exportar_csv()
 
+# commit 23
     # Graficar Evolución
     def on_graficar_evolucion(self, action, param):
         self.simulacion.graficar_evolucion()
