@@ -381,7 +381,7 @@ class MiAplicacion(Gtk.Application):
         header.set_title_widget(Gtk.Label(label="Simulador de Colonia Bacteriana"))
         header.set_show_title_buttons(True)
 
-        # Menú desplegable con acciones
+        # Menú desplegable con acciones 
         menu = Gio.Menu()
         menu.append("Exportar CSV", "app.exportar_csv")
         menu.append("Graficar evolución", "app.graficar_evolucion")
@@ -410,6 +410,8 @@ class MiAplicacion(Gtk.Application):
         boton_graficar = Gtk.Button(label="Mostrar Grilla")
         boton_graficar.connect("clicked", self.on_graficar_click)
         self.contenedor.append(boton_graficar)
+
+# commit 25
 
         # Botón para agregar una nueva bacteria
         boton_bacterias = Gtk.Button(label="Agregar Bacteria")
