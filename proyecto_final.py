@@ -75,7 +75,7 @@ class Ambiente:
         self.grilla = np.empty((5, 5), dtype=object)  # Grilla de objetos Bacteria o None
         self.nutrientes = np.full((5, 5), 100)  # Cada celda parte con 100 nutrientes
         self.contador_pasos = 0
-        self.factor_ambiental = 0.2  # Puede representar antibióticos 
+        self.factor_ambiental = 0.2  # antibióticos 
 
     def grilla_objetos(self):
         # Agrega una bacteria en una posición aleatoria libre
